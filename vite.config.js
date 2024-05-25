@@ -4,8 +4,16 @@ import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), nodePolyfills()],
-  define: {
-    "process.env": {},
-  },
+   esbuild: {
+      target: "es2020"
+   },
+   optimizeDeps: {
+      esbuildOptions : {
+          target: "es2020"
+      }
+   },
+   plugins: [react(), nodePolyfills()],
+   define: {
+      "process.env": {},
+   },
 });
