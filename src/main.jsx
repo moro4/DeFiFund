@@ -3,6 +3,7 @@ import ReactDom from 'react-dom/client';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThirdwebProvider } from '@thirdweb-dev/react';
+import './index.css';
 
 const root = ReactDom.createRoot(document.getElementById('root'));
 root.render(
