@@ -9,7 +9,7 @@ export default function Navbar() {
    const navigate = useNavigate();
    const [reference, setReference] = useState('dashboard');
    const [toggleDrawer, setToggleDrawer] = useState(false);
-   const ethereum_address = '0xabc';
+   const ethereum_addr = '0xabc';
 
    return (
       <div className='flex md:flex-row flex-col-reverse justify-between
@@ -42,10 +42,10 @@ export default function Navbar() {
 
             <CustomButton
                btnType='button'
-               title={ethereum_address ? 'Create Campaing' : 'Connect'}
-               styles={ethereum_address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+               title={ethereum_addr ? 'Create Campaing' : 'Connect'}
+               styles={ethereum_addr ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
                handleClick={() => {
-                  if (ethereum_address) {
+                  if (ethereum_addr) {
                      navigate('create-campaing');
                   } else {
                      // connect();
@@ -65,6 +65,93 @@ export default function Navbar() {
                   />
                </div>
             </Link>
+
+         </div>
+
+         {/* Mobile navigation */}
+         <div className='sm:hidden flex justify-between items-center relative'>
+
+            {/* Profile icon */}
+            <div className='w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32]
+               flex justify-center items-center cursor-pointer'
+               >
+               <img
+                  src={thirdweb}
+                  className='w-[60%] h-[60%] object-contain'
+                  alt='user profile icon'
+                  />
+            </div>
+
+            {/* Hamburger menu icon */}
+            <img
+               src={menu}
+               alt='menu'
+               className='w-[34px] h-[34px] object-contain cursor-pointer'
+               onClick={() => setToggleDrawer(!toggleDrawer)}
+            />
+
+            {/* Navlinks Drawer */}
+            <div className={`
+               absolute top-[60px] right-0 left-0 bg-[#1c1c24]
+               z-10 shadow-secondary py-4 transition-all duration-500
+               ${!toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'}`}
+            >
+               <ul className='mb-4'>
+                  {navlinks.map(link => (
+                     <li
+                        key={link.name}
+                        className={`
+                           flex p-8
+                           ${reference === link.name && 'bg-[#3a3a43]'}
+                        `}
+                        onClick={() => {
+                           setReference(link.name);
+                           setToggleDrawer(false);
+                           navigate(link.link);
+                        }}
+                     >
+                        <img
+                           src={link.imgUrl}
+                           alt={link.name}
+                           className={`
+                              w-[24px] h-[24px] object-contain
+                              ${reference === link.name
+                                 ? 'grayscale-0'
+                                 : 'grayscale'
+                              }
+                           `}
+                        />
+                        <p className={`
+                           ml-[20px] font-epilogue font-semibold text-[14px]
+                           cursor-pointer
+                           ${reference === link.name
+                              ? 'text-[#1dc071]'
+                              : 'text-[#808191]'}
+                           `}
+                        >
+                           {link.name}
+                        </p>
+                     </li>
+                  ))}
+               </ul>
+
+               {/* Create campaign/Connect button */}
+               <div className='flex mx-4'>
+                  <CustomButton
+                     btnType='button'
+                     title={ethereum_addr ? 'Create Campaing' : 'Connect'}
+                     styles={ethereum_addr ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+                     handleClick={() => {
+                        if (ethereum_addr) {
+                           navigate('create-campaing');
+                        } else {
+                           // connect();
+                        }
+                     }}
+                  />
+               </div>
+
+            </div>
 
          </div>
 
