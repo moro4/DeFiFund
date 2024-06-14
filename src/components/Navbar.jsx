@@ -42,11 +42,11 @@ export default function Navbar() {
 
             <CustomButton
                btnType='button'
-               title={ethereum_addr ? 'Create Campaing' : 'Connect'}
+               title={ethereum_addr ? 'Create Campaign' : 'Connect'}
                styles={ethereum_addr ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
                handleClick={() => {
                   if (ethereum_addr) {
-                     navigate('create-campaing');
+                     navigate('create-campaign');
                   } else {
                      // connect();
                   }
