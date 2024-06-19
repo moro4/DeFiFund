@@ -43,15 +43,37 @@ export default function CreateCampaign() {
                   placeholder='John Smith'
                   inputType='text'
                   value={form.name}
-                  handleChange={() => {}}
+                  handleChange={() => { }}
                />
                <FormField
                   labelName='Campaign Title *'
                   placeholder='Provide a Title'
                   inputType='text'
                   value={form.title}
-                  handleChange={() => {}}
+                  handleChange={() => { }}
                />
+            </div>
+
+            <FormField
+               labelName='Story *'
+               placeholder='Share your strory'
+               isTextArea
+               value={form.description}
+               handleChange={() => { }}
+            />
+
+            {/* Information banner */}
+            <div className='w-full h-[120px] flex justify-center items-center
+               p-4 bg-[#8c6dfb] rounded-[10px]'
+            >
+               <img src={money} alt='money icon'
+                  className='w-[40px] h-[40px] object-contain'
+               />
+               <h4 className='font-epilogue font-bold text-[25px] text-white
+                  ml-[20px] antialiased'
+               >
+                  Get 100% of the raised amount!
+               </h4>
             </div>
          </form>
 
