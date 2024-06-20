@@ -13,6 +13,10 @@ export default function CreateCampaign() {
       name: '', title: '', description: '', target: '', deadline: '', image: ''
    });
 
+   function handleFormFieldChange(e, targetField) {
+      setForm({...form, [targetField]: e.target.value});
+   }
+
    function handleSubmit() {
       return null;
    }
@@ -43,14 +47,14 @@ export default function CreateCampaign() {
                   placeholder='John Smith'
                   inputType='text'
                   value={form.name}
-                  handleChange={() => { }}
+                  handleChange={(e) => { handleFormFieldChange(e, 'name') }}
                />
                <FormField
                   labelName='Campaign Title *'
                   placeholder='Provide a Title'
                   inputType='text'
                   value={form.title}
-                  handleChange={() => { }}
+                  handleChange={(e) => { handleFormFieldChange(e, 'title') }}
                />
             </div>
 
@@ -59,7 +63,9 @@ export default function CreateCampaign() {
                placeholder='Share your strory'
                isTextArea
                value={form.description}
-               handleChange={() => { }}
+               handleChange={
+                  (e) => { handleFormFieldChange(e, 'description') }
+               }
             />
 
             {/* Information banner */}
@@ -75,6 +81,42 @@ export default function CreateCampaign() {
                   Get 100% of the raised amount!
                </h4>
             </div>
+
+            <div className='flex flex-wrap gap-[40px]'>
+               <FormField
+                  labelName='Goal *'
+                  placeholder='ETH 0.50'
+                  inputType='text'
+                  value={form.target}
+                  handleChange={(e) => { handleFormFieldChange(e, 'target') }}
+               />
+               <FormField
+                  labelName='End Date *'
+                  placeholder='End Date'
+                  inputType='date'
+                  value={form.deadline}
+                  handleChange={
+                     (e) => { handleFormFieldChange(e, 'deadline') }
+                  }
+               />
+            </div>
+
+               <FormField
+                  labelName='Campaign image *'
+                  placeholder='Place image URL of your campaign'
+                  inputType='url'
+                  value={form.image}
+                  handleChange={
+                     (e) => { handleFormFieldChange(e, 'image') }
+                  }
+               />
+
+            <div className='flex justify-center items-center mt-[40px]'>
+               <CustomButton btnType='submit' title='Submit new campaign'
+                  styles='bg-[#1dc071]'
+               />
+            </div>
+
          </form>
 
       </div>
