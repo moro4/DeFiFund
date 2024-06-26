@@ -20,3 +20,14 @@ export const checkIfImage = (url, callback) => {
    img.onload = () => callback(true);
    img.onerror = () => callback(false);
 };
+
+export function isFormComplete(form) {
+   // A little precaution check to ensure form completeness in case
+   // there is no client-side validation for some reason
+
+   const isValid = Object.entries(form)
+      .filter(item => item[1] === '')
+      .length === 0;
+
+   return isValid;
+}

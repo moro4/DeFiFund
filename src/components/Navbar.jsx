@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CustomButton } from './';
 import { logo, menu, search, thirdweb } from '../assets';
 import { navlinks } from '../constants';
+import { web3Context } from '../context';
 
 export default function Navbar() {
 
    const navigate = useNavigate();
    const [reference, setReference] = useState('dashboard');
    const [toggleDrawer, setToggleDrawer] = useState(false);
-   const ethereum_addr = '0xabc';
+   const {
+      account,
+      walletFrontEndConnect,
+      walletConfig
+   } = useContext(web3Context);
 
    return (
       <div className='flex md:flex-row flex-col-reverse justify-between
@@ -42,13 +47,13 @@ export default function Navbar() {
 
             <CustomButton
                btnType='button'
-               title={ethereum_addr ? 'Create Campaign' : 'Connect'}
-               styles={ethereum_addr ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
-               handleClick={() => {
-                  if (ethereum_addr) {
+               title={account ? 'Create Campaign' : 'Connect'}
+               styles={account ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+               handleClick={async () => {
+                  if (account) {
                      navigate('create-campaign');
                   } else {
-                     // connect();
+                     await walletFrontEndConnect(walletConfig);
                   }
                }}
             />
@@ -74,12 +79,12 @@ export default function Navbar() {
             {/* Profile icon */}
             <div className='w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32]
                flex justify-center items-center cursor-pointer'
-               >
+            >
                <img
-                  src={thirdweb}
+                  src={logo}
                   className='w-[60%] h-[60%] object-contain'
                   alt='user profile icon'
-                  />
+               />
             </div>
 
             {/* Hamburger menu icon */}
@@ -139,13 +144,13 @@ export default function Navbar() {
                <div className='flex mx-4'>
                   <CustomButton
                      btnType='button'
-                     title={ethereum_addr ? 'Create Campaing' : 'Connect'}
-                     styles={ethereum_addr ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
-                     handleClick={() => {
-                        if (ethereum_addr) {
+                     title={account ? 'Create Campaing' : 'Connect'}
+                     styles={account ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+                     handleClick={async () => {
+                        if (account) {
                            navigate('create-campaing');
                         } else {
-                           // connect();
+                           await walletFrontEndConnect(walletConfig);
                         }
                      }}
                   />
