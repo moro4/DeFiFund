@@ -34,9 +34,29 @@ export function Web3ContextProvider({ children }) {
       }
    }
 
+   async function getCampaigns() {
+      const campaigns = await contract.call('getCampaigns');
+
+      const prepCampaigns = campaigns.map((campaign, idx) => ({
+         owner: campaign.owner,
+         title: campaign.title,
+         description: campaign.description,
+         target: ethers.utils.formatEther(campaign.target.toString()),
+         deadline: campaign.deadline.toNumber(),
+         amountCollected: ethers.utils.formatEther(
+            campaign.amountCollected.toString()
+         ),
+         image: campaign.image,
+         pid: idx
+      }));
+
+      return prepCampaigns
+   }
+
    return (
       <web3Context.Provider value={{
-         account, walletFrontEndConnect, walletConfig, contract, publishCampaign
+         account, walletFrontEndConnect, walletConfig, contract,
+         publishCampaign, getCampaigns
       }}>
          {children}
       </web3Context.Provider>
