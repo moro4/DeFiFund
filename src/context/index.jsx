@@ -53,10 +53,18 @@ export function Web3ContextProvider({ children }) {
       return prepCampaigns
    }
 
+   async function getUserCampaigns() {
+      const allCampaigns = await getCampaigns();
+      const userCampaigns = allCampaigns.filter(
+         campaign => campaign.owner === account
+      );
+      return userCampaigns;
+   }
+
    return (
       <web3Context.Provider value={{
          account, walletFrontEndConnect, walletConfig, contract,
-         publishCampaign, getCampaigns
+         publishCampaign, getCampaigns, getUserCampaigns
       }}>
          {children}
       </web3Context.Provider>
