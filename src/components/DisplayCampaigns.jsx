@@ -7,7 +7,7 @@ export default function DisplayCampaigns({ title, isLoading, campaigns }) {
    const navigate = useNavigate();
 
    function handleNavigate(campaign) {
-      navigate(`/campaigns-details/${campaign.title}`, { state: campaign });
+      navigate(`/campaign-details/${campaign.title}`, { state: campaign });
    }
 
    return (

@@ -8,7 +8,8 @@ export default function CountBox({ title, value }) {
          </h4>
          <p className='font-epilogue font-normal text-[16px] text-[#818291]
             bg-[#28282e] px-3 py-2 w-full rounded-b-[10px] text-center'>
-            {title}
+            {title === 'Days Left'
+               ? value.startsWith('-') ? 'Days Past' : title : title}
          </p>
       </div>
    )
