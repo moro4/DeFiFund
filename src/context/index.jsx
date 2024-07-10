@@ -61,10 +61,33 @@ export function Web3ContextProvider({ children }) {
       return userCampaigns;
    }
 
+   async function donate(pid, amount) {
+      const data = await contract.call(
+         'donateToCampaign',
+         [pid],
+         {value: ethers.utils.parseEther(amount)}
+      );
+      return data;
+   }
+
+   async function getDonations(pid) {
+      // getDonators() returns a two-dimensional array, with the first
+      // inner array containing the donors and the second containing the
+      // corresponding donations
+      const data = await contract.call('getDonators', [pid]);
+      const [donatorList, donationList] = data;
+      const donations = donatorList.map((donator, idx) => ({
+         donator: donator,
+         donation: ethers.utils.formatEther(donationList[idx].toString())
+
+      }));
+      return donations;
+   }
+
    return (
       <web3Context.Provider value={{
          account, walletFrontEndConnect, walletConfig, contract,
-         publishCampaign, getCampaigns, getUserCampaigns
+         publishCampaign, getCampaigns, getUserCampaigns, donate, getDonations
       }}>
          {children}
       </web3Context.Provider>
