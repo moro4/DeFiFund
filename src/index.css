@@ -19,3 +19,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
    -webkit-box-orient: vertical;
    overflow: hidden;
 }
+
+.progress::-webkit-progress-bar {
+   background-color: #3a3a43;
+}
+
+.progress::-webkit-progress-value {
+   background-color: #4acd8d;
+}
+
+.progress::-moz-progress-bar {
+   background-color: #4acd8d;
+}
