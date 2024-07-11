@@ -1,15 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
-import { ethers } from 'ethers';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { web3Context } from '../context';
-import { CustomButton, CountBox } from '../components';
+import { CustomButton, CountBox, Loader } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
-import { thirdweb } from '../assets';
+import { loader, thirdweb } from '../assets';
 
 export default function CampaignDetails() {
 
    const { state } = useLocation();
    const { donate, getDonations, contract, account } = useContext(web3Context);
+   const navigate = useNavigate();
 
    const [isLoading, setIsLoading] = useState(false);
    const [donationAmount, setDonationAmount] = useState('');
@@ -43,7 +43,7 @@ export default function CampaignDetails() {
    return (
       <div>
 
-         {isLoading && 'Loading...'}
+         {isLoading && <Loader />}
 
          <div className='w-full flex md:flex-row flex-col mt-10 gap-[30px]'>
 
