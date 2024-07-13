@@ -1,42 +1,9 @@
-## Getting Started
+# DeFiFund
 
-Create a project using this example:
+![](defifund.avif)
 
-```bash
-npx thirdweb create --template vite-javascript-starter
-```
+DeFiFund is a simple, albeit incomplete!, react based webapp that empowers crowdfunding through blockchain. It moves away from traditional means like Kickstarter and Co. by leveraging the power of ethereum technology. As a decentralized place DeFiFund allows fundraisers to find unmediated financial support from the community free from any needless authority potentially censoring the process. A simple smart contract coded up with Solidity makes this possible. To raise funds for a campaign one has to complete a form that includes the title, story, financial goal etc. After successful submission the data is stored in the contract, retrieved by the frontend, and displayed on the overview page along with other campaigns ready to be funded. Anyone who believes in the project can directly support it without leaving the app by sending Ether to the contract from which it's then deposited into the fundraiser's ethereum address. Regarding the tech stack, DeFiFund's front-facing part is built with pure react along with tailwindcss, a react router handles the browser navigation and Thirdweb libraries are used to interact with the smart contract. As mentioned above, the app is lacking and by no means production ready. It acts as a proof of concept, so features like search, log in, theme switching, and many other things haven't been built. For me the focal point was more on understanding how the user interface works together with ethereum network in the background.
 
-You can start editing the page by modifying `src/main.jsx`. The page auto-updates as you edit the file.
 
-On `src/index.jsx`, you'll find our `ThirdwebProvider` wrapping your app,
-this is necessary for our [hooks](https://portal.thirdweb.com/react) and
-[UI Components](https://portal.thirdweb.com/ui-components) to work.
 
-## Environment Variables
-
-To run this project, you will need to add environment variables. Check the `.env.example` file for all the environment variables required and add it to `.env.local` file or set them up on your hosting provider.
-
-### Deploy to IPFS
-
-Deploy a copy of your application to IPFS using the following command:
-
-```bash
-yarn deploy
-```
-
-## Learn More
-
-To learn more about thirdweb, Vite and React, take a look at the following resources:
-
-- [thirdweb React Documentation](https://docs.thirdweb.com/react) - learn about our React SDK.
-- [thirdweb JavaScript Documentation](https://docs.thirdweb.com/react) - learn about our JavaScript/TypeScript SDK.
-- [thirdweb Portal](https://docs.thirdweb.com/react) - check our guides and development resources.
-- [Vite Documentation](https://vitejs.dev/guide/) - learn about Vite features.
-- [React documentation](https://reactjs.org/) - learn React.
-- [Templates](https://thirdweb.com/templates)
-
-You can check out [the thirdweb GitHub organization](https://github.com/thirdweb-dev) - your feedback and contributions are welcome!
-
-## Join our Discord!
-
-For any questions, suggestions, join our discord at [https://discord.gg/thirdweb](https://discord.gg/thirdweb).
+[DeFiFund LIVE Demo](https://defifund.netlify.app/)
